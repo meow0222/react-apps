@@ -4,6 +4,8 @@ import AddForm from './components/AddForm';
 import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 import Calendar from './components/Calendar';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
 
 import './App.css';
 
@@ -87,6 +89,8 @@ const App = () => {
 
   return (
     <div>
+      <Navbar />
+      <Header />
       <Container>
         <h1>
           My TODOs
