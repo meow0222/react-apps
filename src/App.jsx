@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Todo from './components/Todo';
 import AddForm from './components/AddForm';
 import Container from './components/Container'
+import Calendar from './components/Calendar';
 
 import './App.css';
 
@@ -84,6 +85,7 @@ const App = () => {
   });
 
   return (
+    <div>
     <Container>
       <h1>
         My TODOs
@@ -96,6 +98,8 @@ const App = () => {
         onSubmit={handleAddFormSubmit}
       />
     </Container>
+    <Calendar />
+    </div>
   );
 };
 
