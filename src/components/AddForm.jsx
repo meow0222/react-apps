@@ -10,9 +10,11 @@ const AddForm = (props) => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      props.onSubmit(title);
-      setTitle('');
-      inputRef.current.focus();
+      if (title.trim() !== '') {
+        props.onSubmit(title);
+        setTitle('');
+        inputRef.current.focus();
+      }
     };
   
     return (

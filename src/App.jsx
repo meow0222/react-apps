@@ -5,23 +5,29 @@ import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 
 import './App.css';
-import ContactForm from './components/ContactForm';
 
 
 const App = () => {
   const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
-    // JSONファイルからtodosを読み込む
     fetch('http://localhost:8080/api/todos')
       .then(response => response.json())
-      .then(data => setTodos(data))
-      .catch(error => console.error('Error loading todos:', error));
+      .then(data => {
+        setTodos(data);
+        setIsLoading(false); // データ取得が完了したらisLoadingをfalseにする
+      })
+      .catch(error => {
+        console.error('Error loading todos:', error);
+        setIsLoading(false); // エラーの場合もisLoadingをfalseにする
+      });
   }, []);
 
+
   const updateTodos = (newTodos) => {
-    setTodos(newTodos);
     // JSONファイルにtodosを保存
+    console.log(newTodos);
     fetch('http://localhost:8080/api/todos', {
       method: 'PUT',
       body: JSON.stringify(newTodos),
@@ -29,7 +35,11 @@ const App = () => {
         'Content-Type': 'application/json',
       },
     })
-    .then(() => console.log('Todos updated successfully'))
+    .then( () => {
+      // 新しいToDoをリストに追加
+      setTodos(newTodos);
+      console.log('Todos updated successfully');
+    })
     .catch(error => console.error('Error updating todos:', error));
   };
 
@@ -64,11 +74,7 @@ const App = () => {
       }
       return response.json();
     })
-    .then(data => {
-      // 新しいToDoをリストに追加
-      const updatedTodos = [...todos, data];
-      updateTodos(updatedTodos);
-    })
+    
     .catch(error => {
       console.error('Error adding todo:', error);
     });
@@ -113,33 +119,27 @@ const App = () => {
 {console.log(`todos`,todos)}
   return (
     <Container>
-
-
-      
-
       <h1>
         My TODOs
         <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent roundeds' 
         onClick={handlePurgeClick}>Purge</button>
       </h1>
-      {/* <ul id="todos"> */}
-        {/* {todoItems} */}
-        {todos.map(todo => (
-          <div className='bg-blue'
-          key={todo.id}>
-            {todo?.task1?.title}
-            {todo?.task2?.title}
-            {todo?.task3?.title}
-            
-          </div>
-        ))}
-
-
-      {/* </ul> */}
-      <AddForm
-        onSubmit={handleAddFormSubmit}
-      />
-      <ContactForm/>
+      {isLoading ? ( // データ取得中の場合
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {todos.map(todo => (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              onDeleteClick={handleTodoDeleteClick}
+              onCheckboxChange={handleTodoCheckboxChange}
+            />
+          ))}
+        </ul>
+      )}
+      <AddForm onSubmit={handleAddFormSubmit} />
+      <ContactForm />
     </Container>
   );
 };
