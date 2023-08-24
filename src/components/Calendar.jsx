@@ -1,23 +1,9 @@
 import DateContainer from './DateContainer';
 import DayComponent from './DayComponent'
 import './Calendar.css';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Calendar() {
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        fetch("http://localhost:8080/message", {
-            method: "GET",
-            headers: {
-                "casino": "message"
-            }
-        })
-        .then((res) => res.json())
-        .then((data) => setMessage(data.message));
-    }, []);
-    console.log(message);
-
 
     let currentYear = 2023;
     let currentMonth = 7;
@@ -32,8 +18,6 @@ function Calendar() {
     if(monthNow === 12) {
         isNextBtnDisplay = false;
     }
-
-    const settedDate = new Date(currentYear, (monthNow - 1), 1);
 
     let allDate = [];
     let numberOfDate;
@@ -76,7 +60,6 @@ function Calendar() {
             numberOfDate = 31;
             break;
     }
-
 
     allDate.push(Array.from({length: numberOfDate}, (_, i) => {
         return new Date(currentYear, (monthNow - 1), i+1);
