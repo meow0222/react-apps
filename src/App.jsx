@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Todo from './components/Todo';
 import AddForm from './components/AddForm';
-import Container from './components/Container'
+import Container from './components/Container';
+import ContactForm from './components/ContactForm';
 
 import './App.css';
+import ContactForm from './components/ContactForm';
 
 
 const App = () => {
@@ -95,6 +97,7 @@ const App = () => {
       <AddForm
         onSubmit={handleAddFormSubmit}
       />
+      <ContactForm/>
     </Container>
   );
 };
