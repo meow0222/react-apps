@@ -3,6 +3,7 @@ import Todo from './components/Todo';
 import AddForm from './components/AddForm';
 import Container from './components/Container';
 import ContactForm from './components/ContactForm';
+import Calendar from './components/Calendar';
 
 import './App.css';
 import ContactForm from './components/ContactForm';
@@ -86,6 +87,7 @@ const App = () => {
   });
 
   return (
+    <div>
     <Container>
       <h1>
         My TODOs
@@ -99,6 +101,8 @@ const App = () => {
       />
       <ContactForm/>
     </Container>
+    <Calendar />
+    </div>
   );
 };
 
