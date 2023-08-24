@@ -1,22 +1,23 @@
 import DateContainer from './DateContainer';
 import DayComponent from './DayComponent'
 import './Calendar.css';
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Calendar() {
-    const [message, setMessage] = useState("");
+    // const [message, setMessage] = useState("");
 
-    useEffect(() => {
-        fetch("http://localhost:8080/message", {
-            method: "GET",
-            headers: {
-                "casino": "message"
-            }
-        })
-        .then((res) => res.json())
-        .then((data) => setMessage(data.message));
-    }, []);
-    console.log(message);
+    // useEffect(() => {
+    //     fetch("http://localhost:8080/message", {
+    //         method: "GET",
+    //         headers: {
+    //             "casino": "message"
+    //         }
+    //     })
+    //     .then((res) => res.json())
+    //     .then((data) => setMessage(data.message));
+    // }, []);
+    // console.log(message);
 
 
     let currentYear = 2023;

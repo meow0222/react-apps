@@ -86,7 +86,7 @@ const App = () => {
 
   return (
     <div>
-    <Container>
+    {/* <Container>
       <h1>
         My TODOs
         <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent roundeds' onClick={handlePurgeClick}>Purge</button>
@@ -97,7 +97,7 @@ const App = () => {
       <AddForm
         onSubmit={handleAddFormSubmit}
       />
-    </Container>
+    </Container> */}
     <Calendar />
     </div>
   );
