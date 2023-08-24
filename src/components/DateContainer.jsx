@@ -6,6 +6,7 @@ function DateContainer(props) {
     let [showDate, setModalDate] = useState("")
     const [isModal, setModal] = useState(false);
     const [eventData, getEvent] = useState("");
+    const [holiday, getHoliday] = useState("");
     let eventDate = new Date()
 
 
@@ -19,6 +20,24 @@ function DateContainer(props) {
         .then((res) => res.json())
         .then((data) => getEvent(Object.values(data[0])));
     }, []);
+
+    useEffect(() => {
+        fetch("https://canada-holidays.ca/api/v1/holidays")
+        .then((res) => res.json())
+        .then((data) => getHoliday(Object.values(data["holidays"])));
+    }, []);
+
+    
+
+    const tempHoliday = []
+    for(let i=0; i<holiday.length; i++) {
+        tempHoliday.push(holiday[i].date)
+    }
+    const tempHolidayDetail = []
+    for(let i=0; i<holiday.length; i++) {
+        tempHolidayDetail.push(holiday[i].nameEn)
+    }
+    // console.log(holiday)
 
     const tempArr = []
     for(let i=0; i<eventData.length; i++) {
@@ -83,6 +102,9 @@ function DateContainer(props) {
     const needCheck = tempArr.map((date)=>{
         return new Date(date + ", 2023")
     })    
+    const needCheckHoliday = tempHoliday.map((date)=>{
+        return new Date(date)
+    })    
 
     return (
         <div>
@@ -90,7 +112,7 @@ function DateContainer(props) {
                 {blankDate(thisMonthStart)}
                 {
                     dateArr.map((date) => {
-                        return <DateComponent today={date} checkEvent={needCheck} detail={tempDetail} key={dateArr[date]} onClick={getDate} />
+                        return <DateComponent today={date} checkEvent={needCheck} checkHoliday={needCheckHoliday} detail={tempDetail} holidayDetail={tempHolidayDetail} key={dateArr[date]} onClick={getDate} />
                     })
                 }
             </ul>
