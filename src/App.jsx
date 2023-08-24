@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Todo from './components/Todo';
 import AddForm from './components/AddForm';
-import Container from './components/Container'
+import Container from './components/Container';
+import ContactForm from './components/ContactForm';
 import Calendar from './components/Calendar';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
 
 import './App.css';
 
@@ -86,19 +89,23 @@ const App = () => {
 
   return (
     <div>
-    {/* <Container>
-      <h1>
-        My TODOs
-        <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent roundeds' onClick={handlePurgeClick}>Purge</button>
-      </h1>
-      <ul id="todos">
-        {todoItems}
-      </ul>
-      <AddForm
-        onSubmit={handleAddFormSubmit}
-      />
-    </Container> */}
-    <Calendar />
+      <Navbar />
+      <Header />
+      <Container>
+        <h1>
+          My TODOs
+          <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent roundeds' onClick={handlePurgeClick}>Purge</button>
+        </h1>
+        <ul id="todos">
+          {todoItems}
+        </ul>
+        <AddForm
+          onSubmit={handleAddFormSubmit}
+        />
+      </Container>
+      <Calendar />
+      CONTACT FORM
+      <ContactForm/>
     </div>
   );
 };
