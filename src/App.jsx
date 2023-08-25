@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Todo from './components/Todo';
 import AddForm from './components/AddForm';
-import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 import Calendar from './components/Calendar';
 import Header from './components/Header';
@@ -125,7 +124,7 @@ const App = () => {
     <div>
       <Navbar />
       <Header />
-      <h1>
+      <h1 className='my-12'>
         My TODOs
         <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent roundeds' 
         onClick={handlePurgeClick}>Purge</button>
@@ -145,7 +144,6 @@ const App = () => {
         </ul>
       )}
       <AddForm onSubmit={handleAddFormSubmit} />
-      <ContactForm />
       <Calendar />
       CONTACT FORM
       <ContactForm/>
