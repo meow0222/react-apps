@@ -1,3 +1,5 @@
+import './Calendar.css';
+
 const Todo = (props) => {
   const handleDeleteClick = () => {
     props.onDeleteClick(props.todo.id);

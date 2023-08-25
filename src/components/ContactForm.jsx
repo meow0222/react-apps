@@ -43,7 +43,7 @@ function ContactForm() {
     <form onSubmit={handleSubmit}>
       {/* 名前入力フォーム */}
       <div>
-        <label htmlFor="name" className='block text-gray-700 text-sm font-bold mb-2'>Name</label>
+        <label htmlFor="name" className='block text-gray-700 text-sm font-bold mb-2 my-12'>Name</label>
         <input
           type="text"
           id="name"
