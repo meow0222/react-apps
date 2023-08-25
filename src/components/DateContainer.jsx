@@ -112,7 +112,7 @@ function DateContainer(props) {
                 {blankDate(thisMonthStart)}
                 {
                     dateArr.map((date) => {
-                        return <DateComponent today={date} checkEvent={needCheck} checkHoliday={needCheckHoliday} detail={tempDetail} holidayDetail={tempHolidayDetail} key={dateArr[date]} onClick={getDate} />
+                        return <DateComponent today={date} checkEvent={needCheck} checkHoliday={needCheckHoliday} detail={tempDetail} holidayDetail={tempHolidayDetail} key={date} onClick={getDate} />
                     })
                 }
             </ul>
